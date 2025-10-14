@@ -37,11 +37,19 @@ This guide shows how to deploy the json-server mock backend to Vercel and connec
 
 After deployment, test these endpoints:
 
-- **GET Persons**: `https://your-vercel-url.vercel.app/persons`
-- **GET Tasks**: `https://your-vercel-url.vercel.app/tasks`
-- **POST Task**: `https://your-vercel-url.vercel.app/tasks`
-- **PUT Task**: `https://your-vercel-url.vercel.app/tasks/1`
-- **DELETE Task**: `https://your-vercel-url.vercel.app/tasks/1`
+- **GET Persons**: `https://your-vercel-url.vercel.app/api/persons`
+- **GET Tasks**: `https://your-vercel-url.vercel.app/api/tasks`
+- **POST Task**: `https://your-vercel-url.vercel.app/api/tasks`
+- **PUT Task**: `https://your-vercel-url.vercel.app/api/tasks/1`
+- **DELETE Task**: `https://your-vercel-url.vercel.app/api/tasks/1`
+
+### Recent Fixes Applied
+
+✅ **Fixed Runtime Crashes**: Replaced deprecated `substr()` with `substring()`
+✅ **Enhanced Error Handling**: Added detailed error messages and logging
+✅ **Improved Vercel Config**: Updated vercel.json with proper runtime settings
+✅ **Data Structure Cleanup**: Removed inconsistent fields causing crashes
+✅ **CORS Headers**: Added comprehensive CORS configuration
 
 ## Step 2: Update Angular Environment
 

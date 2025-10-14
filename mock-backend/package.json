@@ -5,10 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "json-server --watch db.json --port 3000"
-  },
-  "dependencies": {
-    "json-server": "^0.17.4"
+    "dev": "node index.js"
   },
   "engines": {
     "node": ">=18.0.0"
