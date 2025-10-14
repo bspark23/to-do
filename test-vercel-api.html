@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Vercel API</title>
+</head>
+<body>
+    <h1>Testing Vercel API Endpoints</h1>
+    <div id="results"></div>
+
+    <script>
+        const API_BASE = 'https://todo-app-9co4.vercel.app/api';
+        const results = document.getElementById('results');
+
+        async function testEndpoint(url, name) {
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                results.innerHTML += `<h3>${name} ✅</h3><pre>${JSON.stringify(data, null, 2)}</pre><hr>`;
+            } catch (error) {
+                results.innerHTML += `<h3>${name} ❌</h3><p>Error: ${error.message}</p><hr>`;
+            }
+        }
+
+        // Test all endpoints
+        testEndpoint(`${API_BASE}`, 'Main API Info');
+        testEndpoint(`${API_BASE}/persons`, 'Get All Persons');
+        testEndpoint(`${API_BASE}/tasks`, 'Get All Tasks');
+        testEndpoint(`${API_BASE}/persons/1`, 'Get Person by ID');
+        testEndpoint(`${API_BASE}/tasks/1`, 'Get Task by ID');
+    </script>
+</body>
+</html>

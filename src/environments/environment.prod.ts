@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://angular-todo-mock-api.vercel.app/api'
+  apiUrl: 'https://todo-app-9co4.vercel.app/api'
 };
