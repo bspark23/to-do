@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration production",
-    "build:prod": "ng build --configuration production --output-hashing=all",
+    "build": "ng build --configuration production --output-mode=static",
+    "build:prod": "ng build --configuration production --output-hashing=all --output-mode=static",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:angular-todo-list": "node dist/angular-todo-list/server/server.mjs",
