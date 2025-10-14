@@ -1,0 +1,159 @@
+{
+  "persons": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "phone": "+1234567890"
+    },
+    {
+      "id": "2",
+      "name": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "phone": "+1987654321"
+    },
+    {
+      "id": "3",
+      "name": "Bob Johnson",
+      "email": "bob.johnson@example.com",
+      "phone": "+1122334455"
+    },
+    {
+      "id": "b45b",
+      "name": "Blessing Mbata",
+      "email": "mbatab14@gmail.com",
+      "phone": "234 0905686543"
+    },
+    {
+      "id": "10f2",
+      "name": "Livingstone Mbata",
+      "email": "mbatab14@gmail.com",
+      "phone": "234 8098676456"
+    },
+    {
+      "id": "f815",
+      "name": "Livingstone",
+      "email": "mbastone2020@gmail.com",
+      "phone": "123 5486"
+    }
+  ],
+  "tasks": [
+    {
+      "title": "Create Angular Components",
+      "personName": {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "phone": "+1234567890"
+      },
+      "startDate": "2024-01-15T00:00:00.000Z",
+      "endDate": "2025-10-14T08:33:51.464Z",
+      "priority": "Difficile",
+      "labels": [
+        "HTML",
+        "CSS",
+        "NODE JS"
+      ],
+      "description": "Develop reusable Angular components for the application",
+      "completed": true,
+      "person": {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john.doe@example.com",
+        "phone": "+1234567890"
+      },
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "title": "Setup Database Schema",
+      "person": {
+        "id": 2,
+        "name": "Jane Smith",
+        "email": "jane.smith@example.com",
+        "phone": "+1987654321"
+      },
+      "startDate": "2024-01-10T00:00:00.000Z",
+      "endDate": "2024-01-20T00:00:00.000Z",
+      "priority": "Difficile",
+      "labels": [
+        "NODE JS"
+      ],
+      "description": "Design and implement the database schema for the project",
+      "completed": true
+    },
+    {
+      "id": "3",
+      "title": "Implement User Interface",
+      "person": {
+        "id": 3,
+        "name": "Bob Johnson",
+        "email": "bob.johnson@example.com",
+        "phone": "+1122334455"
+      },
+      "startDate": "2024-01-20T00:00:00.000Z",
+      "endDate": null,
+      "priority": "Facile",
+      "labels": [
+        "HTML",
+        "CSS",
+        "JQUERY"
+      ],
+      "description": "Create responsive user interface with modern design",
+      "completed": false
+    },
+    {
+      "id": "4f5f",
+      "title": "creaTE TODA",
+      "person": {
+        "id": "b45b",
+        "name": "Blessing Mbata",
+        "email": "mbatab14@gmail.com",
+        "phone": "234 0905686543"
+      },
+      "startDate": "2025-10-16T03:00:00.000Z",
+      "endDate": "2025-10-23T03:00:00.000Z",
+      "priority": "Moyen",
+      "labels": [
+        "HTML",
+        "CSS",
+        "NODE JS"
+      ],
+      "description": "CREATE IT TODAY",
+      "completed": false
+    },
+    {
+      "id": "0f27",
+      "title": "bbdjyrtdc",
+      "person": {
+        "id": "10f2",
+        "name": "Livingstone Mbata",
+        "email": "mbatab14@gmail.com",
+        "phone": "234 8098676456"
+      },
+      "startDate": "2025-10-14T09:42:46.132Z",
+      "priority": "Moyen",
+      "labels": [
+        "NODE JS"
+      ],
+      "description": "ho",
+      "completed": false
+    },
+    {
+      "id": "f39e",
+      "title": "my qwe",
+      "person": {
+        "id": "f815",
+        "name": "Livingstone",
+        "email": "mbastone2020@gmail.com",
+        "phone": "123 5486"
+      },
+      "startDate": "2025-10-14T09:44:04.127Z",
+      "endDate": "2025-10-14T09:44:26.474Z",
+      "priority": "Moyen",
+      "labels": [],
+      "description": "bhje5rh",
+      "completed": true
+    }
+  ]
+}

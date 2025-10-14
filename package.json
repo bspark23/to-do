@@ -4,10 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --configuration production",
+    "build:prod": "ng build --configuration production --output-hashing=all",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:angular-todo-list": "node dist/angular-todo-list/server/server.mjs"
+    "serve:ssr:angular-todo-list": "node dist/angular-todo-list/server/server.mjs",
+    "json-server": "json-server --watch db.json --port 3000",
+    "dev": "concurrently \"npm run json-server\" \"npm start\""
   },
   "prettier": {
     "printWidth": 100,
@@ -23,16 +26,26 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^20.3.4",
+    "@angular/cdk": "^20.2.8",
     "@angular/common": "^20.3.0",
     "@angular/compiler": "^20.3.0",
     "@angular/core": "^20.3.0",
     "@angular/forms": "^20.3.0",
+    "@angular/material": "^20.2.8",
     "@angular/platform-browser": "^20.3.0",
     "@angular/platform-server": "^20.3.0",
     "@angular/router": "^20.3.0",
     "@angular/ssr": "^20.3.5",
+    "@tailwindcss/forms": "^0.5.10",
+    "autoprefixer": "^10.4.21",
     "express": "^5.1.0",
+    "json-server": "^1.0.0-beta.3",
+    "ng2-completer": "^9.0.1",
+    "ng2-smart-table": "^1.7.2",
+    "postcss": "^8.5.6",
     "rxjs": "~7.8.0",
+    "tailwindcss": "^3.4.18",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
@@ -42,6 +55,7 @@
     "@types/express": "^5.0.1",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^20.17.19",
+    "concurrently": "^9.2.1",
     "jasmine-core": "~5.9.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",

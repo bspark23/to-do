@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Angular Material Theme */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles */
+html, body { 
+  height: 100%; 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+
+/* Custom utility classes */
+.error-field {
+  @apply border-red-500 bg-red-50;
+}
+
+.error-text {
+  @apply text-red-600 text-sm mt-1;
+}
