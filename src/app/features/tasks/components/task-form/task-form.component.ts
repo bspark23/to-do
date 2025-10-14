@@ -77,7 +77,7 @@ import { CustomValidators } from '../../../../shared/validators/custom-validator
           </mat-error>
         </mat-form-field>
 
-        <div class="flex gap-4">
+        <div class="flex flex-col sm:flex-row gap-4">
           <mat-form-field appearance="outline" class="flex-1">
             <mat-label>Start Date</mat-label>
             <input 
@@ -152,12 +152,12 @@ import { CustomValidators } from '../../../../shared/validators/custom-validator
         </div>
       </mat-dialog-content>
 
-      <mat-dialog-actions class="flex justify-end gap-2 p-4">
+      <mat-dialog-actions class="flex flex-col sm:flex-row justify-end gap-2 p-4">
         <button 
           mat-button 
           type="button" 
           (click)="onCancel()"
-          class="px-4 py-2 text-gray-600 hover:text-gray-800">
+          class="w-full sm:w-auto px-4 py-2 text-gray-600 hover:text-gray-800 order-2 sm:order-1">
           Cancel
         </button>
         <button 
@@ -165,7 +165,7 @@ import { CustomValidators } from '../../../../shared/validators/custom-validator
           color="primary" 
           type="submit"
           [disabled]="taskForm.invalid || isSubmitting"
-          class="px-4 py-2">
+          class="w-full sm:w-auto px-4 py-2 order-1 sm:order-2">
           {{ isSubmitting ? 'Saving...' : (isEditMode ? 'Update' : 'Save') }}
         </button>
       </mat-dialog-actions>

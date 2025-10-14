@@ -11,7 +11,8 @@ A comprehensive TODO List Management Application built with Angular 20, featurin
 - **Advanced Filtering**: Filter tasks by priority (Facile, Moyen, Difficile) and labels (HTML, CSS, NODE JS, JQUERY)
 - **Pagination**: Navigate through large datasets efficiently
 - **Form Validation**: Comprehensive validation with real-time feedback
-- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
+- **Fully Responsive Design**: Optimized for mobile, tablet, and desktop with adaptive layouts
+- **Mobile-First UI**: Card-based mobile view, hamburger navigation, touch-friendly controls
 
 ### Technical Features
 - **Angular 20**: Latest Angular framework with standalone components
@@ -124,10 +125,67 @@ src/
 └── db.json                      # Mock database for json-server
 ```
 
+## Deployment
+
+### Production Deployment
+
+This application is deployed with:
+- **Frontend**: Netlify (https://your-netlify-url.netlify.app)
+- **Backend API**: Vercel (https://angular-todo-mock-api.vercel.app)
+
+### Backend and Deployment Information
+
+This project follows the assignment guideline by using a mock backend (json-server).
+
+**Local Development:**
+- The mock backend runs locally at http://localhost:3000 using json-server
+- All CRUD operations (create, edit, delete) work locally
+
+**Deployed Version:**
+- To make the Netlify deployment fully functional, the same mock backend was deployed separately on Vercel
+- The deployed frontend communicates with: https://angular-todo-mock-api.vercel.app
+- This ensures identical behavior between local and online environments, while still respecting the assignment's requirement to use a mock backend instead of a real API
+
+### Mock API Deployment (Vercel)
+
+1. **Create Vercel Account**
+   - Go to https://vercel.com and sign up with GitHub
+
+2. **Deploy Mock API**
+   - Import GitHub repository
+   - Set root directory to `mock-backend`
+   - Vercel auto-detects Node.js and deploys json-server
+
+3. **Environment Configuration**
+   - The app uses environment-specific API URLs
+   - Local: `http://localhost:3000`
+   - Production: Your Vercel deployment URL
+
+### Frontend Deployment (Netlify)
+
+1. **Build Configuration**
+   ```bash
+   npm run build:prod
+   ```
+
+2. **Netlify Settings**
+   - Build command: `npm install --legacy-peer-deps && npm run build`
+   - Publish directory: `dist/angular-todo-list/browser`
+   - Node version: 20
+
+3. **Environment Files**
+   - Development: `src/environments/environment.ts`
+   - Production: `src/environments/environment.prod.ts`
+
+### Data Synchronization
+
+The production API uses the same `db.json` data as local development, ensuring identical datasets across environments.
+
 ## Available Scripts
 
 - `npm start` - Start Angular development server
 - `npm run build` - Build the application for production
+- `npm run build:prod` - Build with production optimizations
 - `npm run json-server` - Start json-server mock backend
 - `npm run dev` - Start both Angular and json-server simultaneously
 - `npm test` - Run unit tests

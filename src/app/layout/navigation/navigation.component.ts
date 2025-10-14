@@ -4,20 +4,23 @@ import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatToolbarModule, MatButtonModule, MatIconModule],
+  imports: [CommonModule, RouterModule, MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule],
   template: `
     <mat-toolbar color="primary" class="shadow-md">
-      <div class="container mx-auto flex justify-between items-center">
-        <div class="flex items-center space-x-4">
-          <mat-icon class="text-2xl">task_alt</mat-icon>
-          <span class="text-xl font-semibold">TODO Manager</span>
+      <div class="container mx-auto flex justify-between items-center px-4">
+        <div class="flex items-center space-x-2 sm:space-x-4">
+          <mat-icon class="text-xl sm:text-2xl">task_alt</mat-icon>
+          <span class="text-lg sm:text-xl font-semibold hidden xs:block">TODO Manager</span>
+          <span class="text-lg sm:text-xl font-semibold block xs:hidden">TODO</span>
         </div>
         
-        <nav class="flex space-x-4">
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex space-x-4">
           <a 
             mat-button 
             routerLink="/tasks" 
@@ -35,6 +38,23 @@ import { MatIconModule } from '@angular/material/icon';
             Persons
           </a>
         </nav>
+
+        <!-- Mobile Navigation -->
+        <div class="md:hidden">
+          <button mat-icon-button [matMenuTriggerFor]="mobileMenu" class="text-white">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <mat-menu #mobileMenu="matMenu">
+            <a mat-menu-item routerLink="/tasks">
+              <mat-icon class="mr-2">assignment</mat-icon>
+              <span>Tasks</span>
+            </a>
+            <a mat-menu-item routerLink="/persons">
+              <mat-icon class="mr-2">people</mat-icon>
+              <span>Persons</span>
+            </a>
+          </mat-menu>
+        </div>
       </div>
     </mat-toolbar>
   `

@@ -1,0 +1,16 @@
+{
+  "name": "angular-todo-mock-api",
+  "version": "1.0.0",
+  "description": "Mock API for Angular TODO List Management Application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "json-server --watch db.json --port 3000"
+  },
+  "dependencies": {
+    "json-server": "^0.17.4"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

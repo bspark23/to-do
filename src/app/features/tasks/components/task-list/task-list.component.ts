@@ -40,24 +40,25 @@ import { ConfirmationDialogComponent } from '../../../../shared/components/confi
         MatTooltipModule
     ],
     template: `
-    <div class="container mx-auto p-6">
+    <div class="container mx-auto p-2 sm:p-4 lg:p-6">
       <div class="bg-white rounded-lg shadow-md">
-        <div class="flex justify-between items-center p-6 border-b">
-          <h1 class="text-2xl font-bold text-gray-900">Task Management</h1>
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center p-4 sm:p-6 border-b gap-4">
+          <h1 class="text-xl sm:text-2xl font-bold text-gray-900">Task Management</h1>
           <button 
             mat-raised-button 
             color="primary" 
             (click)="openTaskForm()"
-            class="flex items-center gap-2">
+            class="flex items-center justify-center gap-2 w-full sm:w-auto">
             <mat-icon>add</mat-icon>
-            Add Task
+            <span class="hidden xs:inline">Add Task</span>
+            <span class="xs:hidden">Add</span>
           </button>
         </div>
 
         <!-- Filters -->
-        <div class="p-6 border-b bg-gray-50">
-          <form [formGroup]="filterForm" class="flex flex-wrap gap-4 items-end">
-            <mat-form-field appearance="outline" class="min-w-48">
+        <div class="p-4 sm:p-6 border-b bg-gray-50">
+          <form [formGroup]="filterForm" class="flex flex-col sm:flex-row flex-wrap gap-4 items-stretch sm:items-end">
+            <mat-form-field appearance="outline" class="w-full sm:min-w-48 sm:w-auto">
               <mat-label>Priority</mat-label>
               <mat-select formControlName="priority" (selectionChange)="applyFilters()">
                 <mat-option value="">All Priorities</mat-option>
@@ -67,7 +68,7 @@ import { ConfirmationDialogComponent } from '../../../../shared/components/confi
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="min-w-48">
+            <mat-form-field appearance="outline" class="w-full sm:min-w-48 sm:w-auto">
               <mat-label>Labels</mat-label>
               <mat-select formControlName="labels" multiple (selectionChange)="applyFilters()">
                 <mat-option *ngFor="let label of labels" [value]="label">
@@ -80,14 +81,73 @@ import { ConfirmationDialogComponent } from '../../../../shared/components/confi
               mat-button 
               color="accent" 
               (click)="clearFilters()"
-              class="h-12">
+              class="h-12 w-full sm:w-auto">
               Clear Filters
             </button>
           </form>
         </div>
         
-        <div class="p-6">
-          <div class="mat-elevation-z8">
+        <div class="p-2 sm:p-4 lg:p-6">
+          <!-- Mobile Card View -->
+          <div class="block lg:hidden space-y-4">
+            <div *ngFor="let task of dataSource" class="bg-white border rounded-lg p-4 shadow-sm">
+              <div class="flex justify-between items-start mb-3">
+                <div class="flex-1">
+                  <h3 class="font-semibold text-lg text-gray-900 mb-1">{{ task.title }}</h3>
+                  <p class="text-sm text-gray-600 mb-2">{{ task.person ? task.person.name : 'Unassigned' }}</p>
+                </div>
+                <div class="flex space-x-1 ml-2">
+                  <button 
+                    mat-icon-button 
+                    color="primary" 
+                    (click)="editTask(task)"
+                    class="!w-8 !h-8">
+                    <mat-icon class="!text-base">edit</mat-icon>
+                  </button>
+                  <button 
+                    mat-icon-button 
+                    color="warn" 
+                    (click)="deleteTask(task)"
+                    class="!w-8 !h-8">
+                    <mat-icon class="!text-base">delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+              
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-sm font-medium text-gray-700">Priority:</span>
+                  <span [class]="getPriorityClass(task.priority)">{{ task.priority }}</span>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                  <span class="text-sm font-medium text-gray-700">Status:</span>
+                  <span [class]="getStatusClass(task.completed)">
+                    {{ task.completed ? 'Completed' : 'In Progress' }}
+                  </span>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                  <span class="text-sm font-medium text-gray-700">Start Date:</span>
+                  <span class="text-sm text-gray-600">{{ formatDate(task.startDate) }}</span>
+                </div>
+                
+                <div *ngIf="task.labels && task.labels.length > 0" class="flex flex-wrap gap-1 mt-2">
+                  <span *ngFor="let label of task.labels" 
+                        class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">
+                    {{ label }}
+                  </span>
+                </div>
+                
+                <div *ngIf="task.description" class="mt-2">
+                  <p class="text-sm text-gray-600 line-clamp-2">{{ task.description }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Desktop Table View -->
+          <div class="mat-elevation-z8 hidden lg:block">
             <table mat-table [dataSource]="dataSource" class="w-full">
               <ng-container matColumnDef="title">
                 <th mat-header-cell *matHeaderCellDef class="font-semibold">
@@ -114,7 +174,7 @@ import { ConfirmationDialogComponent } from '../../../../shared/components/confi
                 <td mat-cell *matCellDef="let task">
                   <div class="flex items-center gap-1">
                     <mat-icon class="text-sm text-green-500">account_circle</mat-icon>
-                    {{ task.person?.name || 'Unassigned' }}
+                    {{ task.person ? task.person.name : 'Unassigned' }}
                   </div>
                 </td>
               </ng-container>
@@ -228,6 +288,14 @@ import { ConfirmationDialogComponent } from '../../../../shared/components/confi
               showFirstLastButtons>
             </mat-paginator>
           </div>
+          
+          <!-- Mobile Pagination -->
+          <div class="block lg:hidden mt-4">
+            <mat-paginator 
+              [pageSizeOptions]="[5, 10, 20]" 
+              showFirstLastButtons>
+            </mat-paginator>
+          </div>
         </div>
       </div>
     </div>
@@ -304,7 +372,8 @@ export class TaskListComponent implements OnInit {
 
     openTaskForm(task?: Task): void {
         const dialogRef = this.dialog.open(TaskFormComponent, {
-            width: '700px',
+            width: '95vw',
+            maxWidth: '700px',
             maxHeight: '90vh',
             data: task || null
         });

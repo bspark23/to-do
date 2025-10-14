@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Task } from '../models/task.model';
 import { Priority, Label } from '../models/enums';
+import { environment } from '../../../environments/environment';
 
 export interface TaskFilters {
   priority?: Priority;
@@ -15,7 +16,7 @@ export interface TaskFilters {
   providedIn: 'root'
 })
 export class TaskService {
-  private apiUrl = 'http://localhost:3000/tasks';
+  private apiUrl = `${environment.apiUrl}/tasks`;
 
   constructor(private http: HttpClient) {}
 

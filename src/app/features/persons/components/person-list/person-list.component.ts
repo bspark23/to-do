@@ -33,28 +33,71 @@ import { ConfirmationDialogComponent } from '../../../../shared/components/confi
         MatTooltipModule
     ],
     template: `
-    <div class="container mx-auto p-6">
+    <div class="container mx-auto p-2 sm:p-4 lg:p-6">
       <div class="bg-white rounded-lg shadow-md">
-        <div class="flex justify-between items-center p-6 border-b">
-          <h1 class="text-2xl font-bold text-gray-900">Person Management</h1>
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center p-4 sm:p-6 border-b gap-4">
+          <h1 class="text-xl sm:text-2xl font-bold text-gray-900">Person Management</h1>
           <button 
             mat-raised-button 
             color="primary" 
             (click)="openPersonForm()"
-            class="flex items-center gap-2">
+            class="flex items-center justify-center gap-2 w-full sm:w-auto">
             <mat-icon>add</mat-icon>
-            Add Person
+            <span class="hidden xs:inline">Add Person</span>
+            <span class="xs:hidden">Add</span>
           </button>
         </div>
         
-        <div class="p-6">
+        <div class="p-2 sm:p-4 lg:p-6">
           <mat-form-field appearance="outline" class="w-full mb-4">
             <mat-label>Search persons</mat-label>
             <input matInput (keyup)="applyFilter($event)" placeholder="Search by name, email, or phone">
             <mat-icon matSuffix class="text-gray-400">search</mat-icon>
           </mat-form-field>
 
-          <div class="mat-elevation-z8">
+          <!-- Mobile Card View -->
+          <div class="block lg:hidden space-y-4">
+            <div *ngFor="let person of dataSource" class="bg-white border rounded-lg p-4 shadow-sm">
+              <div class="flex justify-between items-start mb-3">
+                <div class="flex-1">
+                  <h3 class="font-semibold text-lg text-gray-900 mb-1">{{ person.name }}</h3>
+                  <div class="space-y-1">
+                    <div class="flex items-center gap-2">
+                      <mat-icon class="text-sm text-green-500">mail</mat-icon>
+                      <a [href]="'mailto:' + person.email" class="text-blue-600 hover:underline text-sm">
+                        {{ person.email }}
+                      </a>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <mat-icon class="text-sm text-purple-500">call</mat-icon>
+                      <a [href]="'tel:' + person.phone" class="text-blue-600 hover:underline text-sm">
+                        {{ person.phone }}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex space-x-1 ml-2">
+                  <button 
+                    mat-icon-button 
+                    color="primary" 
+                    (click)="editPerson(person)"
+                    class="!w-8 !h-8">
+                    <mat-icon class="!text-base">edit</mat-icon>
+                  </button>
+                  <button 
+                    mat-icon-button 
+                    color="warn" 
+                    (click)="deletePerson(person)"
+                    class="!w-8 !h-8">
+                    <mat-icon class="!text-base">delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Desktop Table View -->
+          <div class="mat-elevation-z8 hidden lg:block">
             <table mat-table [dataSource]="dataSource" class="w-full">
               <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef class="font-semibold">
@@ -134,6 +177,14 @@ import { ConfirmationDialogComponent } from '../../../../shared/components/confi
               showFirstLastButtons>
             </mat-paginator>
           </div>
+          
+          <!-- Mobile Pagination -->
+          <div class="block lg:hidden mt-4">
+            <mat-paginator 
+              [pageSizeOptions]="[5, 10, 20]" 
+              showFirstLastButtons>
+            </mat-paginator>
+          </div>
         </div>
       </div>
     </div>
@@ -180,7 +231,8 @@ export class PersonListComponent implements OnInit {
 
     openPersonForm(person?: Person): void {
         const dialogRef = this.dialog.open(PersonFormComponent, {
-            width: '500px',
+            width: '95vw',
+            maxWidth: '500px',
             data: person || null
         });
 
