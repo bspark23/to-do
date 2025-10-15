@@ -108,22 +108,7 @@ A comprehensive TODO List Management Application built with Angular 20, featurin
 ## Project Structure
 
 ```
-src/
-├── app/
-│   ├── core/                    # Core services and models
-│   │   ├── models/              # Data models and interfaces
-│   │   └── services/            # HTTP services for API communication
-│   ├── features/                # Feature modules
-│   │   ├── tasks/               # Task management components
-│   │   └── persons/             # Person management components
-│   ├── shared/                  # Shared components and utilities
-│   │   ├── components/          # Reusable components
-│   │   └── validators/          # Custom form validators
-│   └── layout/                  # Layout components
-│       └── navigation/          # Navigation component
-├── styles.css                   # Global styles
-└── db.json                      # Mock database for json-server
-```
+
 
 ## Deployment
 
